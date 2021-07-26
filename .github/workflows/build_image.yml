@@ -1,0 +1,31 @@
+name: build-docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Login to Yosemitesam Registry
+        uses: docker/login-action@v1
+        with:
+          registry: registry.yosemitesam.ch:443
+          username: github
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: |
+            registry.yosemitesam.ch:443/papermerge-deu:latest
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

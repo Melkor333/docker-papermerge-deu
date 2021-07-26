@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  cv:
+    image: registry.yosemitesam.ch:443/papermerge-deu:latest
+    volumes:
+      - data:/data
+      - config:/config
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - traefik.docker.network=traefik-public
+        - traefik.enable=true
+        - traefik.http.services.papermerge.loadbalancer.server.port=8000
+        - traefik.http.routers.papermerge.rule=Host(`papermerge.yosemitesam.ch`)
+        - traefik.http.routers.papermerge.entrypoints=https
+        - traefik.http.routers.papermerge.tls.certresolver=le
+        - traefik.http.routers.papermerge.tls=true
+
+volumes:
+  data:
+  config:
+
+networks:
+  traefik-public:
+    external: true

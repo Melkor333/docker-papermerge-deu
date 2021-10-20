@@ -1,0 +1,14 @@
+* About
+
+This is a simple docker container containing a papermerge instance with both german and english language enabled.
+The Base for this docker image and instructions for its use are over at [[https://hub.docker.com/r/linuxserver/papermerge]].
+
+* Building
+
+I currently don't upload this image to a public docker registry, so you'll have to build it yourself. If there is an interest I might open up my current personal registry for use.
+
+This is untested but you should be able to build the image with the following command:
+
+#+begin_src sh
+docker build https://github.com/Melkor333/docker-papermerge-deu.git
+#+end_src

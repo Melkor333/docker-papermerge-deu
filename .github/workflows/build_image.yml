@@ -7,7 +7,7 @@ on:
     branches: [ main ]
   schedule:
     # refresh every day at 2
-    - cron: "* 2 * * * "
+    - cron: "1 2 * * * "
             #│ │ │ │ │───────────── day of the week (0 - 6)
             #│ │ │ │────────────── month (1 - 12)
             #│ │ │─────────────────── day of the month (1 - 31)
